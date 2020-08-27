@@ -1,14 +1,14 @@
 import { Person } from './models/person.js';
+import { logExecutionTime } from './decorators/decorators.js';
 
-const method = Person.prototype.speak;
-Person.prototype.speak = function(...args) {
-    console.log(`Argumentos do método: ${args}`);
-    console.time('speak');
-    const result = method.bind(this)(...args);
-    console.timeEnd('speak');
-    return result;
+decorate(
+    Person, 
+    {
+        speak: logExecutionTime,
+        getFullName: logExecutionTime
+    }
+);
 
-};
 const person = new Person('Flávio', 'Almeida');
 person.getFullName();
 person.speak('Tudo bem?');

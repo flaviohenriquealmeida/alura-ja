@@ -25,5 +25,9 @@ import { SessionFactory } from './infra/session-factory.js';
     await session.save(person);
     await session.save(animal);
 
+    const people = await session.list(Person);
+    people.forEach(person => console.log(person.getFullName()));
+    const animals = await session.list(Animal);
+    console.log(animals);
 
 })().catch(e => console.log(e));

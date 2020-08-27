@@ -41,7 +41,29 @@ class Session {
                 reject(`Não foi possível persistir o objeto na store ${storeName}`);
             }
         });
-    }    
+    } 
+   
+    list(clazz) {
+        return new Promise((resolve, reject) => {
+            const storeName = clazz.name;
+            const store = this.connection
+                .transaction([storeName], 'readwrite')
+                .objectStore(storeName);
+            const cursor = store.openCursor();
+            const converter = this.stores.get(storeName);
+            const list = [];
+            cursor.onsuccess = e => {
+                const current = e.target.result;
+                if (current) {
+                    const value = current.value;
+                    list.push(converter(value));
+                    current.continue();
+                } else {
+                    resolve(list);
+                }
+            };
+        });
+    }   
 }
 
 function createConnection(dbName, dbVersion, stores) {

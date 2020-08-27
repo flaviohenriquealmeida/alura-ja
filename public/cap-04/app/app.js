@@ -32,3 +32,4 @@ const getNotaFromIdM = memoizer(getNotaFromId);
 getNotaFromIdM(1)
     .then(console.log)
     .then(getNotaFromIdM(1))
+    .catch(e => console.log(e));

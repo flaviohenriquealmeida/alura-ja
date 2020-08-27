@@ -7,12 +7,16 @@ export const logExecutionTime = (method, property, args) => {
     return result;
 };
 
-export const inspectMethod = (method, property, args) => {
-    console.log('Start inspectMethod');
-    console.log(`Método decorado: ${property}`);
-    console.log(`Argumentos do método ${args}`);
-    const result = method(...args);
-    console.log(`resultado do método: ${result}`)
-    console.log('End inspectMethod');
-    return result;
+export const inspectMethod = (excludeReturn = false) => {
+    return (method, property, args) => {
+        console.log('Start inspectMethod');
+        console.log(`Método decorado: ${property}`);
+        console.log(`Argumentos do método ${args}`);
+        const result = method(...args);
+        if(!excludeReturn) {
+            console.log(`resultado do método: ${result}`)
+        }
+        console.log('End inspectMethod');
+        return result;
+    }
 };

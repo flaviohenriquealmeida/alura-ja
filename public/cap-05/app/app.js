@@ -4,7 +4,7 @@ import { decorate } from './infra/decorate.js';
 decorate(
     Person, 
     {
-        speak: [logExecutionTime, inspectMethod],
+        speak: [logExecutionTime, inspectMethod(true)],
         getFullName: [logExecutionTime]
     }
 );

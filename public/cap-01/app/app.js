@@ -12,3 +12,8 @@ const conta = new Conta({
 });
 
 console.log(conta);
+
+const object1 = { nome: 'Flávio' };
+const object2 = { peso: 78 };
+Object.assign(object1, object2);
+console.log(object1);

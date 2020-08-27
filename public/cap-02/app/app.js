@@ -18,6 +18,12 @@ import { SessionFactory } from './infra/session-factory.js';
         ]
     })
     .openSession();
-    
-    console.log(session);
+
+    const person = new Person('Flávio', 'Almeida');
+    const animal = new Animal('Calopsita');
+
+    await session.save(person);
+    await session.save(animal);
+
+
 })().catch(e => console.log(e));

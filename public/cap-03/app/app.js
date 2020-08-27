@@ -18,4 +18,9 @@ import { ActiveRecord } from './infra/active-record.js';
         ]
     })
     .init();
+
+    const person = new Person('Flávio', 'Almeida');
+    await person.save();
+    const animal = new Animal('Calopsita Azul');
+    await animal.save();
 })();

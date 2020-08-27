@@ -1,6 +1,6 @@
 import { Person } from './models/person.js';
 import { logExecutionTime } from './decorators/decorators.js';
-
+import { decorate } from './infra/decorate.js';
 decorate(
     Person, 
     {
